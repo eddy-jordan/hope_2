@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Track Package</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .status {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        .timeline {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 40px;
+            border-left: 3px solid #ccc;
+        }
+        .step {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .step .circle {
+            position: absolute;
+            left: -12px;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+        .step.completed .circle {
+            background-color: #4CAF50;
+        }
+        .step.active .circle {
+            background-color: #ff9800;
+        }
+        .step .label {
+            margin-left: 20px;
+            font-weight: bold;
+        }
+        .step.active .arrow {
+            display: inline-block;
+            margin-left: 10px;
+            color: #ff9800;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tracking ID: {{ package.tracking_id }}</h1>
+    <p><strong>Status:</strong> {{ package.get_status_display }}</p>
+    <p><strong>From:</strong> {{ package.from_location }}</p>
+    <p><strong>To:</strong> {{ package.to_location }}</p>
+    <p><strong>Scheduled Delivery:</strong> {{ package.scheduled_delivery }}</p>
+
+    <h3>Tracking Progress</h3>
+    <div class="timeline">
+        <div class="step completed">
+            <div class="circle">1</div>
+            <div class="label">Package Received</div>
+        </div>
+        <div class="step {% if package.status in 'in_transit out_for_delivery delivered' %}completed{% endif %}{% if package.status == 'in_transit' %} active{% endif %}">
+            <div class="circle">2</div>
+            <div class="label">In Transit {% if package.status == 'in_transit' %}<span class="arrow">← current</span>{% endif %}</div>
+        </div>
+        <div class="step {% if package.status in 'out_for_delivery delivered' %}completed{% endif %}{% if package.status == 'out_for_delivery' %} active{% endif %}">
+            <div class="circle">3</div>
+            <div class="label">Out for Delivery {% if package.status == 'out_for_delivery' %}<span class="arrow">← current</span>{% endif %}</div>
+        </div>
+        <div class="step {% if package.status == 'delivered' %}completed active{% endif %}">
+            <div class="circle">4</div>
+            <div class="label">Delivered {% if package.status == 'delivered' %}<span class="arrow">← current</span>{% endif %}</div>
+        </div>
+    </div>
+</body>
+</html>

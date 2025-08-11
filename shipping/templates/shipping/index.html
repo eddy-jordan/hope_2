@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Package Tracking</title>
+  </head>
+  <body>
+    <h1>Enter your Tracking Number</h1>
+    <form method="get" action="{% url 'track_redirect' %}">
+      <input
+        type="text"
+        name="tracking_id"
+        placeholder="Tracking Number"
+        required
+      />
+      <button type="submit">Track</button>
+    </form>
+    {% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}! <a href="{% url 'logout' %}">Logout</a></p>
+    {% else %}
+    <a href="{% url 'login' %}">Login</a> |
+    <a href="{% url 'signup' %}">Sign Up</a>
+    {% endif %}
+  </body>
+</html>
