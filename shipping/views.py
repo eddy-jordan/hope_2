@@ -3,8 +3,8 @@ from .models import Package
 
 def track_package(request, tracking_id):
     package = get_object_or_404(Package, tracking_id=tracking_id)
-    return render(request, 'shipping/track.html', {'from_location': package.from_location,  # database field
-        'to_location': package.to_location,  
+    return render(request, 'shipping/track.html', {'from': package.from_location,  # database field
+        'to': package.to_location,  
         'package': package})
 
 from django.shortcuts import render
