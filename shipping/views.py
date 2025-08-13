@@ -3,7 +3,9 @@ from .models import Package
 
 def track_package(request, tracking_id):
     package = get_object_or_404(Package, tracking_id=tracking_id)
-    return render(request, 'shipping/track.html', {'package': package})
+    return render(request, 'shipping/track.html', {'from': package.from_location,  # database field
+        'to': package.to_location,  
+        'package': package})
 
 from django.shortcuts import render
 
@@ -19,6 +21,8 @@ def track_redirect(request):
         return redirect('track_package', tracking_id=tracking_id)
     else:
         return redirect('index')
+    
+
 
 def about(request):
     return render(request, 'shipping/about.html')
