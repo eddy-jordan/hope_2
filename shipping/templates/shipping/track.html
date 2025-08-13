@@ -167,11 +167,13 @@
             </div>
             <div class="transit__items">
                 <ul>
-                    <li>{{FROM|default:'Location'}}</li>
+                    <li>FROM</li>
+                    <p>{{ to|default:'location' }}</p>
                     <li class="long ">PACKAGE RECIEVED BY ATLANTIC EXPRESS</li>
                     <li>IN TRANSIT</li>
                     <li>OUT FOR DELIVERY</li>
-                    <li>{{TO|default:'Location'}}</li>
+                    <li>TO</li>
+                     <p>{{ to|default:'location' }}</p>
                 </ul>
                 <div class="pitem">
                     <p class="slant">Schedule Delivery Date</p>
