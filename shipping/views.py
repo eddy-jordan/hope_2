@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Package
+from django.contrib.auth.decorators import login_required
+
 
 def track_package(request, tracking_id):
     package = get_object_or_404(Package, tracking_id=tracking_id)
