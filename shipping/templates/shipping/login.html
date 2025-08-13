@@ -134,6 +134,10 @@ body {
     padding-right: 150px;
     border-radius: 10px;
     margin-bottom: 20px;
+    color: #fff;
+    font-size: 10px;
+    border: none;
+    cursor: pointer;
 }
 
 .login__button a{
@@ -166,11 +170,11 @@ body {
             </h1>
 
            
-             <form method="post" class="col-lg-7 col-md-12" >
+             <form method="post" class="form col-lg-7 col-md-12" >
               {% csrf_token %}
               <input type="text" name="username" placeholder="Username or email" class=" col-lg-5 col-md-12" required>
               <input type="password" name="password" placeholder="Password" class=" col-lg-5 col-md-12" required>
-              <button class="login__button ">Login</button>
+              <button class="login__button ">Log in</button>
             </form>
              <a href="#" class="bottom  col-lg-7 col-md-12">Forgot your username or password?</a>
              <a href="{% url 'signup' %}" class="bottom  col-lg-7 col-md-12">Open a new account</a>
