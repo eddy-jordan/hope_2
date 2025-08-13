@@ -9,8 +9,8 @@ class Package(models.Model):
     ]
 
     tracking_id = models.CharField(max_length=20, unique=True)
-    from_location = models.CharField(max_length=100)
-    to_location = models.CharField(max_length=100)
+    from_location = models.CharField(max_length=255)
+    to_location = models.CharField(max_length=255)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
     scheduled_delivery = models.DateField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
