@@ -20,6 +20,12 @@ def track_redirect(request):
     else:
         return redirect('index')
 
+def about(request):
+    return render(request, 'shipping/about.html')
+
+def tracking(request):
+    return render(request, 'shipping/tracking.html')
+
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
