@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+     <link rel="stylesheet" href="{% static 'shipping/style.css' %}">
      <style>
          .navbar {
     background: rgb(74, 17, 17);
@@ -88,6 +89,23 @@
 .about__container{ background-color: rgb(179, 142, 49); padding: 10px; border-radius: 6px; }
 .about__container h4{ font-weight: bold; }
 @media screen and (max-width: 480px){ html{ margin: 0; padding: 0; box-sizing: border-box; overflow-x: hidden; } }
+
+ /* Modernized About layout */
+ .about-hero{ padding: 60px 20px; background: linear-gradient(90deg, rgb(74,17,17) 0%, rgb(171,135,34) 100%); color: #fff; text-align: center; }
+ .about-hero h1{ font-size: 32px; margin-bottom: 8px; }
+ .about-hero p{ margin: 0 auto; max-width: 800px; opacity: 0.9; }
+ .about__container{ max-width: 1000px; margin: 24px auto; }
+ .about__container p{ line-height: 1.7; font-size: 16px; }
+ .about__container h4{ margin-top: 16px; }
+ /* Card grid */
+ .about-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 32px auto; }
+ .about-card{ background: #fff; border-radius: 10px; padding: 20px; box-shadow: 0 4px 14px rgba(0,0,0,0.08); text-align: left; }
+ .about-card h3{ font-size: 18px; font-weight: 800; color: #2a2a2a; margin: 12px 0; letter-spacing: .5px; text-transform: uppercase; }
+ .about-card p, .about-card li{ color: #333; font-size: 14px; line-height: 1.7; }
+ .about-card ul{ padding-left: 18px; margin: 0; }
+ .card-icon{ width: 40px; height: 40px; border-radius: 50%; background: rgb(171,135,34); color: #fff; display: flex; align-items: center; justify-content: center; }
+ @media (max-width: 992px){ .about-grid{ grid-template-columns: repeat(2, 1fr); } }
+ @media (max-width: 600px){ .about-grid{ grid-template-columns: 1fr; } }
      </style>
 </head>
 <body>
@@ -115,45 +133,54 @@
             </ul>
         </div>
     </nav>
+    <div class="about-hero">
+      <h1>About Atlantic Express</h1>
+      <p>Reliable logistics and tailored solutions across transport, warehousing, and supply chain management.</p>
+    </div>
     
     <div class="about" id="about__page container-fluid">
         <div class="about__container col-lg-12 col-md-12">
-            <h4>COMPANY OVERVIEW</h4>
-           <p>
-            At Atlantic Express, we're a leading logistics company dedicated to
-             providing tailored transportation solutions. Our comprehensive services
-              include ground transportation, air freight, ocean freight, warehousing and 
-              distribution, and supply chain management.
-
-           </p>
-           <h4>
-            OUR STRENGTHS
-           </h4>
-           <p>
-            - Advanced Technology: We utilize Transportation Management Systems (TMS) and Warehouse
-             Management Systems (WMS) to optimize logistics operations.
-
-           </p>
-           <p>
-            - Certifications and Compliance: We're committed to safety, quality,
-             and compliance, holding certifications like ISO 9001:2015 and C-TPAT.
-
-           </p>
-           <p>
-            - Sustainability and Social Responsibility: We prioritize environmental 
-            sustainability, community involvement, and diversity and inclusion.
-
-           </p>
-           <h4>
-            OUR RECOGNITION
-           </h4>
-           <p>
-            We've earned recognition as a top logistics company, best place to work, and have received safety awards. Our goal is to deliver exceptional logistics
-             services that meet the evolving needs of our customers.
-           </p>
-
+            <div class="about-grid">
+              <div class="about-card">
+                <div class="card-icon"><i class="fa-regular fa-clipboard"></i></div>
+                <h3>Company Overview</h3>
+                <p>At Atlantic Express, we're a leading logistics company dedicated to providing tailored transportation solutions. Our comprehensive services include ground transportation, air freight, ocean freight, warehousing and distribution, and supply chain management.</p>
+              </div>
+              <div class="about-card">
+                <div class="card-icon"><i class="fa-solid fa-truck"></i></div>
+                <h3>Our Strengths</h3>
+                <ul>
+                  <li>Advanced Technology: Transportation (TMS) and Warehouse (WMS) Management Systems.</li>
+                  <li>Certifications & Compliance: ISO 9001:2015, C-TPAT.</li>
+                  <li>Commitment to safety, quality, and continuous improvement.</li>
+                </ul>
+              </div>
+              <div class="about-card">
+                <div class="card-icon"><i class="fa-solid fa-award"></i></div>
+                <h3>Our Recognition</h3>
+                <p>Recognized as a top logistics company and great workplace with safety awards. Our goal is to deliver exceptional logistics services that meet the evolving needs of our customers.</p>
+              </div>
+            </div>
         </div>
     </div>
+      <footer class="footer__container col-lg-12 col-md-12">
+            <div class="footer__content row col-lg-12 col-md-12">
+                <div class="col-lg-3">
+                    <p><span>2025</span>ATLANTICEXPRESS</p>
+                </div>
+                <div class=" para col-lg-3">
+                    <p>
+                        AE
+                    </p>
+                </div>
+                <div class="col-lg-3">
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-whatsapp"></i>
+                </div>
+            </div>
+      </footer>
+      <script src="https://kit.fontawesome.com/af5051bfc9.js" crossorigin="anonymous"></script>
      <script>
          const menu = document.querySelector('#mobile-menu');
         const menulinks = document.querySelector('.navbar__menu');
