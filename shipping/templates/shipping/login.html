@@ -1,12 +1,196 @@
-<h2>Login</h2>
-<form method="post">
-  {% csrf_token %}
-  <input type="text" name="username" placeholder="Username" required /><br />
-  <input
-    type="password"
-    name="password"
-    placeholder="Password"
-    required
-  /><br />
-  <button type="submit">Login</button>
-</form>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+     <style>
+            *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Navbar section */
+.navbar {
+    background: rgb(74, 17, 17);
+    background-attachment: fixed;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    position: sticky;
+    top: 0;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+.navbar__container {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    z-index: 1;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+#navbar__logo {
+     padding-left: 18px;
+    text-align: center;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: bold;
+    padding-bottom: 8px;
+}
+.navbar__container span{
+    color: rgb(171, 135, 34);
+}
+
+.fa-gem {
+    margin-right: 0.5rem;
+}
+
+
+
+
+@media screen and (max-width: 960px) {
+    
+    .navbar__container{
+        display: flex;
+        justify-content: space-between;
+        height: 80px;
+        z-index: 1;
+        width: 100%;
+        max-width: 1300px;
+        padding: 0;
+    }
+
+   
+ }
+
+
+ /* Login */
+.login{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.login__container{
+     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login__container h1{
+    font-size: 24px;
+}
+
+.personal{
+    margin-top: 10px;
+    line-height: 45px;
+}
+
+.form{
+    display:flex ;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 15px;
+}
+
+.form input{
+    margin-bottom: 25px;
+    height: 40px;
+    width: 300px ;
+}
+
+.form input:hover{
+    border: 3px solid rgb(74, 74, 217);
+}
+
+.login__button{
+    background: rgb(74, 17, 17);
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    padding: 13px 0px;
+    padding-left: 150px ;
+    padding-right: 150px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.login__button a{
+    color: #fff;
+    font-size: 10px;
+    text-decoration: none;
+}
+
+.bottom{
+    padding-top: 15px;
+}
+     </style>
+</head>
+<body>
+      <nav class="navbar">
+        <div class="navbar__container col-lg-12 col-md-12">
+            <a href="/" id="navbar__logo">ATLANTIC<span>EXPRESS</span></a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            
+        </div>
+    </nav>
+
+      <div class="login container-fluid ">
+        <div class="login__container row col-lg-7 col-md-12">
+            <h1 class="col-lg-7 col-md-12">Log in
+            </h1>
+
+           
+             <form method="post" class="col-lg-7 col-md-12" >
+              {% csrf_token %}
+              <input type="text" name="username" placeholder="Username or email" class=" col-lg-5 col-md-12" required>
+              <input type="password" name="password" placeholder="Password" class=" col-lg-5 col-md-12" required>
+              <button class="login__button ">Login</button>
+            </form>
+             <a href="#" class="bottom  col-lg-7 col-md-12">Forgot your username or password?</a>
+             <a href="{% url 'signup' %}" class="bottom  col-lg-7 col-md-12">Open a new account</a>
+        </div>
+        </div>
+
+       
+    </div>
+
+      <script src="https://kit.fontawesome.com/af5051bfc9.js" crossorigin="anonymous"></script>
+      <script>
+        const menu = document.querySelector('#mobile-menu');
+        const menulinks = document.querySelector('.navbar__menu');
+
+        menu.addEventListener('click', function(){
+        menu.classList.toggle('is-active');
+        menulinks.classList.toggle('active');
+});
+
+// Login now navigates to backend auth page directly
+      </script>
+</body>
+</html>

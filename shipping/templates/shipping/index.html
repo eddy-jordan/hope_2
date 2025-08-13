@@ -1,24 +1,121 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Package Tracking</title>
-  </head>
-  <body>
-    <h1>Enter your Tracking Number</h1>
-    <form method="get" action="{% url 'track_redirect' %}">
-      <input
-        type="text"
-        name="tracking_id"
-        placeholder="Tracking Number"
-        required
-      />
-      <button type="submit">Track</button>
-    </form>
-    {% if user.is_authenticated %}
-    <p>Welcome, {{ user.username }}! <a href="{% url 'logout' %}">Logout</a></p>
-    {% else %}
-    <a href="{% url 'login' %}">Login</a> |
-    <a href="{% url 'signup' %}">Sign Up</a>
-    {% endif %}
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'shipping/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+</head>
+<body>
+     <!-- Navbar Section -->
+
+     <nav class="navbar">
+        <div class="navbar__container col-lg-12 col-md-12">
+            <a href="/" id="navbar__logo">ATLANTIC<span>EXPRESS</span></a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="#home" class="navbar__links">HOME</a>
+                </li>
+                 <li class="navbar__item">
+                    <a href="{% url 'about' %}" class="navbar__links">ABOUT</a>
+                </li>
+                
+                 <li class="navbar__item">
+                    <a href="{% url 'tracking' %}" class="navbar__links">TRACKING</a>
+                </li>
+                 <li class="navbar__btn">
+                    <a href="{% url 'login' %}" class="button">LOGIN</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <!-- Home section -->
+     <div class="home container-fluid" id="home">
+        <div class="home__container row col-lg-12 col-md-12 d-flex ">
+            <h1 class=" col-lg-12 col-md-12 " >
+                Reliable<br>
+                Logistics<br>
+                Solutions
+            </h1>
+            <p class=" col-lg-12 col-md-12 " >
+                We provide Comprehensive and <br>
+                Efficient Logistics Services Tailored<br> 
+                to your needs.
+            </p>
+           
+        </div>
+     </div>
+
+
+     <!-- <div class="about container-fluid "> -->
+        <div class="about__container col-lg-12 col-lg-12 " id="about">
+            <div class="about1 col-lg-6 col-md-6">
+                <div class="con">
+                    <h1>ORDER MANAGEMENT</h1>
+                    <i class="fa-regular fa-clipboard"></i>
+                    <p>Streamlined handling of
+                     all your freights and orders</p>
+                </div>
+                <div class="con">
+                    <h1>TRANSPORT</h1>
+                  <i class="fa-solid fa-truck"></i>
+                    <p>Safe and on Time Delivery
+                    of your goods worldwide</p>
+                </div>
+                <div class="con">
+                    <h1>WAREHOUSING</h1>
+                    <i class="fa-solid fa-warehouse"></i>
+                    <p>Secure and Efficient
+                    storage solutions for
+                    your business
+                    </p>
+                </div>
+            </div>
+            <div class="about2 col-lg-6 col-md-12">
+                 <img src="{% static 'shipping/images/pic2.jpg' %}" alt="" >
+            </div>
+           
+        </div>
+     <!-- </div> -->
+
+
+    
+
+      <footer class="footer__container col-lg-12 col-md-12">
+            <div class="footer__content row col-lg-12 col-md-12">
+                <div class="col-lg-3">
+                    <p><span>2025</span>ATLANTICEXPRESS</p>
+                </div>
+                <div class=" para col-lg-3">
+                    <p>
+                        AE
+                    </p>
+                </div>
+                <div class="col-lg-3">
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-whatsapp"></i>
+                </div>
+            </div>
+      </footer>
+      <script src="https://kit.fontawesome.com/af5051bfc9.js" crossorigin="anonymous"></script>
+      <script>
+        const menu = document.querySelector('#mobile-menu');
+        const menulinks = document.querySelector('.navbar__menu');
+
+        menu.addEventListener('click', function(){
+        menu.classList.toggle('is-active');
+        menulinks.classList.toggle('active');
+});
+      </script>
+</body>
 </html>

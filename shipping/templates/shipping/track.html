@@ -1,83 +1,194 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Track Package</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        .status {
-            font-size: 1.2rem;
-            margin-top: 10px;
-        }
-        .timeline {
-            position: relative;
-            margin: 30px 0;
-            padding-left: 40px;
-            border-left: 3px solid #ccc;
-        }
-        .step {
-            position: relative;
-            margin-bottom: 30px;
-        }
-        .step .circle {
-            position: absolute;
-            left: -12px;
-            top: 0;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background-color: #ccc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 12px;
-        }
-        .step.completed .circle {
-            background-color: #4CAF50;
-        }
-        .step.active .circle {
-            background-color: #ff9800;
-        }
-        .step .label {
-            margin-left: 20px;
-            font-weight: bold;
-        }
-        .step.active .arrow {
-            display: inline-block;
-            margin-left: 10px;
-            color: #ff9800;
-            font-size: 16px;
-        }
+        .navbar {
+    background: rgb(74, 17, 17);
+    background-attachment: fixed;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    position: sticky;
+    top: 0;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+.navbar__container {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    z-index: 1;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+#navbar__logo {
+     padding-left: 18px;
+    text-align: center;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: bold;
+    padding-bottom: 8px;
+}
+.navbar__container span{
+    color: rgb(171, 135, 34);
+}
+
+.fa-gem {
+    margin-right: 0.5rem;
+}
+
+.navbar__menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    text-align: center;
+}
+
+.navbar__item{
+    height: 80px;
+}
+
+.navbar__links {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    justify-content: center;
+    text-decoration: none;
+    padding: 0 1rem;
+    height: 100%;
+}
+
+.navbar__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+    width: 100%;
+}
+
+.button {
+     display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 5px 20px;
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    background: #c0c2c6;
+    color: #fff;
+}
+.button:hover {
+    background: rgb(171, 135, 34);
+    transition: all 0.3s ease;
+}
+.navbar__links:hover {
+    color:  rgb(171, 135, 34);
+    transition: all 0.3s ease;
+}
+.transit__container{
+    padding-left: 10px ;
+    padding-top: 10px;
+ }
+ .first h4{ font-size: 13px; font-weight: bold; }
+ .first p{ font-size: 35px; }
+ .second h4{ font-size: 13px; font-weight: bold; }
+ .second p{ font-size: 25px; font-weight: 200; }
+ .second p i{ color: #fff; margin-left: 7px; background: rgb(74, 17, 17); width: fit-content; border-radius: 100%; padding: 5px; font-size: 20px; }
+ .third h4{ font-size: 13px; font-weight: bold; }
+ .transit__items{ margin-top: 15px;  border-left: 3px solid brown }
+ .transit__items ul{ line-height: 55px; }
+ .transit__items ul li{ list-style: none; font-size: 13px; font-weight: bold; }
+ .transit__items ul li:hover{ width: 200px; background-color: #ddd; border-radius: 50px; padding-left: 10px; transition: 0.3s ease; }
+ .transit__items .long:hover{ width: 400px; }
+ .pitem { line-height: 5px; padding-left: 30px; }
+ .pitem .slant{ font-style: italic; }
     </style>
 </head>
 <body>
-    <h1>Tracking ID: {{ package.tracking_id }}</h1>
-    <p><strong>Status:</strong> {{ package.get_status_display }}</p>
-    <p><strong>From:</strong> {{ package.from_location }}</p>
-    <p><strong>To:</strong> {{ package.to_location }}</p>
-    <p><strong>Scheduled Delivery:</strong> {{ package.scheduled_delivery }}</p>
+      <nav class="navbar">
+        <div class="navbar__container col-lg-12 col-md-12">
+            <a href="/" id="navbar__logo">ATLANTIC<span>EXPRESS</span></a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="{% url 'index' %}" class="navbar__links">HOME</a>
+                </li>
+                 <li class="navbar__item">
+                    <a href="{% url 'about' %}" class="navbar__links">ABOUT</a>
+                </li>
+                 <li class="navbar__item">
+                    <a href="{% url 'index' %}#track" class="navbar__links">TRACKING</a>
+                </li>
+                 <li class="navbar__btn">
+                    <a href="{% url 'login' %}" class="button">LOGIN</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-    <h3>Tracking Progress</h3>
-    <div class="timeline">
-        <div class="step completed">
-            <div class="circle">1</div>
-            <div class="label">Package Received</div>
-        </div>
-        <div class="step {% if package.status in 'in_transit out_for_delivery delivered' %}completed{% endif %}{% if package.status == 'in_transit' %} active{% endif %}">
-            <div class="circle">2</div>
-            <div class="label">In Transit {% if package.status == 'in_transit' %}<span class="arrow">← current</span>{% endif %}</div>
-        </div>
-        <div class="step {% if package.status in 'out_for_delivery delivered' %}completed{% endif %}{% if package.status == 'out_for_delivery' %} active{% endif %}">
-            <div class="circle">3</div>
-            <div class="label">Out for Delivery {% if package.status == 'out_for_delivery' %}<span class="arrow">← current</span>{% endif %}</div>
-        </div>
-        <div class="step {% if package.status == 'delivered' %}completed active{% endif %}">
-            <div class="circle">4</div>
-            <div class="label">Delivered {% if package.status == 'delivered' %}<span class="arrow">← current</span>{% endif %}</div>
+    <div class="transit__container">
+        <div class="transit col-lg-12 col-md-12">
+            <div class="first">
+                <h4>SCHEDULED DELIVERY DATE</h4>
+                <p>{{ package.scheduled_delivery|default:'Pending' }}</p>
+            </div>
+            <div class="second">
+                <h4>DELIVERY STATUS</h4>
+                <p>{{ package.get_status_display }}<i class="fa-solid fa-arrow-right"></i></p>
+            </div>
+            <div class="third">
+                <h4>TRACKING ID</h4>
+                <p>{{ package.tracking_id }} <i class="fa-solid fa-pencil"></i><i class="fa-regular fa-star"></i></p>
+            </div>
+            <div class="transit__items">
+                <ul>
+                    <li>FROM</li>
+                    <li class="long ">PACKAGE RECIEVED BY ATLANTIC EXPRESS</li>
+                    <li>IN TRANSIT</li>
+                    <li>OUT FOR DELIVERY</li>
+                    <li>TO</li>
+                </ul>
+                <div class="pitem">
+                    <p class="slant">Schedule Delivery Date</p>
+                    <p>{{ package.scheduled_delivery|default:'Pending' }}</p>
+                </div>
+            </div>
         </div>
     </div>
+<script src="https://kit.fontawesome.com/af5051bfc9.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/af5051bfc9.js" crossorigin="anonymous"></script>
+      <script>
+        const menu = document.querySelector('#mobile-menu');
+        const menulinks = document.querySelector('.navbar__menu');
+        menu.addEventListener('click', function(){
+        menu.classList.toggle('is-active');
+        menulinks.classList.toggle('active');
+});
+      </script>
 </body>
 </html>
