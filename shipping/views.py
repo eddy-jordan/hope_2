@@ -10,7 +10,7 @@ def track_package(request, tracking_id):
         'package': package})
 
 from django.shortcuts import render
-
+@login_required(login_url='login')
 def index(request):
     return render(request, 'shipping/index.html')  # Make sure this template exists
 
